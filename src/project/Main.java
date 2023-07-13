@@ -36,9 +36,11 @@ public class Main {
                 resultChoice = scanner.nextInt();
                 if (resultChoice == 1) {
                     getDataFromUser();
-                    informationWorkingMethods(FileWriteService.CreatingAndWritingFile(fileName, contentText));
+                    FileWriteService.creatingFile(fileName);
+                    informationWorkingMethods(FileWriteService.writeFile(contentText));
                 } else if (resultChoice == 2) {
-                    informationWorkingMethods(FileReadService.readFile(fileName));
+                     DatabaseFile.showFiles();
+                    informationWorkingMethods(FileReadService.readFile());
                 } else {
                     System.out.println("Thanks, bye!");
                     lock = false;

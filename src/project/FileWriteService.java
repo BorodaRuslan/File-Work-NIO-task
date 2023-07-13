@@ -2,21 +2,26 @@ package project;
 
 import utils.Constants;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 
 public class FileWriteService {
-
-    public static String CreatingAndWritingFile(String nameFile, String content){
-        Path path;
-        String pathFile = Constants.PATH_FILE + nameFile + Constants.FORMAT;
+    public static File file;
+    public static void creatingFile (String name){
+        file = new File(Constants.PATH_FILE + name + Constants.FORMAT);
+        DatabaseFile.addFile(file);
+    }
+    public static String writeFile(String content){
         try {
-            path = Files.createFile(Path.of(pathFile));
-            Files.writeString(path, content);
+            Files.writeString(file.toPath(), content);
         } catch (IOException e) {
             return "Error something went wrong";
         }
-        return "File: " + nameFile + " created and written successfully";
+        return "File: " + Main.fileName + " created and written successfully";
     }
+
+
+
 }
